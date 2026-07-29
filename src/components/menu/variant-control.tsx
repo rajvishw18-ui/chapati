@@ -53,7 +53,12 @@ export function VariantControl({
       >
         <Minus width={big ? 16 : 14} height={big ? 16 : 14} />
       </button>
-      <span className={cn("text-center font-bold", big ? "min-w-8 text-lg" : "min-w-8 text-xs")}>
+      <span
+        className={cn(
+          "text-center font-bold",
+          big ? "min-w-8 text-lg" : "min-w-8 text-xs",
+        )}
+      >
         {dish.halfPrice ? `${label} ×${qty}` : qty}
       </span>
       <button

@@ -5,7 +5,8 @@ import { useApp } from "@/context/app-context";
 import { DietMark } from "./diet-mark";
 
 export function BillBar() {
-  const { t, lang, cart, count, subtotal, tax, total, add, remove, clear } = useApp();
+  const { t, lang, cart, count, subtotal, tax, total, add, remove, clear } =
+    useApp();
   const [open, setOpen] = useState(false);
 
   const suggestions = Array.from(
@@ -48,7 +49,9 @@ export function BillBar() {
               {cart.length === 0 ? (
                 <div className="clay-inset rounded-3xl bg-muted px-5 py-8 text-center">
                   <p className="font-bold">{t("emptyCart")}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{t("emptyCartHint")}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {t("emptyCartHint")}
+                  </p>
                 </div>
               ) : (
                 <>
@@ -73,7 +76,9 @@ export function BillBar() {
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center gap-2">
                               <DietMark diet={dish.diet} />
-                              <span className="truncate font-bold">{dish.name[lang]}</span>
+                              <span className="truncate font-bold">
+                                {dish.name[lang]}
+                              </span>
                             </div>
                             <span className="text-sm text-muted-foreground">
                               {dish.halfPrice ? `${t(line.variant)} · ` : ""}
@@ -124,7 +129,9 @@ export function BillBar() {
                           >
                             <Plus width={14} height={14} />
                             {dish.name[lang]}
-                            <span className="opacity-70">{formatPrice(dish.price)}</span>
+                            <span className="opacity-70">
+                              {formatPrice(dish.price)}
+                            </span>
                           </button>
                         ))}
                       </div>
@@ -144,7 +151,9 @@ export function BillBar() {
                       <dt className="font-extrabold">{t("total")}</dt>
                       <dd className="font-extrabold">{formatPrice(total)}</dd>
                     </div>
-                    <p className="pt-1 text-xs text-muted-foreground">{t("serviceNote")}</p>
+                    <p className="pt-1 text-xs text-muted-foreground">
+                      {t("serviceNote")}
+                    </p>
                   </dl>
 
                   <p className="mt-3 text-center text-sm text-muted-foreground">

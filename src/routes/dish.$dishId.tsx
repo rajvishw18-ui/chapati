@@ -41,7 +41,9 @@ function DishPage() {
   if (!dish) return null;
 
   const totalRatings = dish.ratingBreakdown.reduce((a, b) => a + b, 0);
-  const combos = dish.combos.map((id) => dishes.find((d) => d.id === id)!).filter(Boolean);
+  const combos = dish.combos
+    .map((id) => dishes.find((d) => d.id === id)!)
+    .filter(Boolean);
   const spiceLabel = [null, t("mild"), t("medium"), t("hot")][dish.spice];
 
   return (
@@ -71,7 +73,12 @@ function DishPage() {
                 {dish.spice > 0 && (
                   <span className="inline-flex items-center gap-1 text-xs font-bold text-destructive">
                     {Array.from({ length: dish.spice }).map((_, i) => (
-                      <Flame key={i} width={13} height={13} className="fill-destructive/25" />
+                      <Flame
+                        key={i}
+                        width={13}
+                        height={13}
+                        className="fill-destructive/25"
+                      />
                     ))}
                     {spiceLabel}
                   </span>
@@ -82,8 +89,12 @@ function DishPage() {
                   </span>
                 )}
               </div>
-              <h1 className="text-3xl font-extrabold sm:text-4xl">{dish.name[lang]}</h1>
-              <p className="mt-2 max-w-xl text-muted-foreground">{dish.description[lang]}</p>
+              <h1 className="text-3xl font-extrabold sm:text-4xl">
+                {dish.name[lang]}
+              </h1>
+              <p className="mt-2 max-w-xl text-muted-foreground">
+                {dish.description[lang]}
+              </p>
             </div>
 
             <div className="text-right">
@@ -92,7 +103,9 @@ function DishPage() {
                   {t("half")} {formatPrice(dish.halfPrice)}
                 </p>
               )}
-              <p className="text-3xl font-extrabold text-primary">{formatPrice(dish.price)}</p>
+              <p className="text-3xl font-extrabold text-primary">
+                {formatPrice(dish.price)}
+              </p>
               <p className="text-xs text-muted-foreground">
                 {dish.halfPrice ? t("full") : t("perPlate")}
               </p>
@@ -100,7 +113,9 @@ function DishPage() {
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {dish.halfPrice && <VariantControl dish={dish} variant="half" size="lg" />}
+            {dish.halfPrice && (
+              <VariantControl dish={dish} variant="half" size="lg" />
+            )}
             <VariantControl dish={dish} variant="full" size="lg" />
           </div>
         </div>
@@ -168,12 +183,20 @@ function DishPage() {
               const star = 5 - i;
               const pct = totalRatings ? (count / totalRatings) * 100 : 0;
               return (
-                <div key={star} className="flex items-center gap-2 text-xs font-semibold">
+                <div
+                  key={star}
+                  className="flex items-center gap-2 text-xs font-semibold"
+                >
                   <span className="w-3">{star}</span>
                   <div className="clay-inset h-2.5 flex-1 overflow-hidden rounded-full bg-muted">
-                    <div className="h-full rounded-full bg-primary" style={{ width: `${pct}%` }} />
+                    <div
+                      className="h-full rounded-full bg-primary"
+                      style={{ width: `${pct}%` }}
+                    />
                   </div>
-                  <span className="w-8 text-right text-muted-foreground">{count}</span>
+                  <span className="w-8 text-right text-muted-foreground">
+                    {count}
+                  </span>
                 </div>
               );
             })}
@@ -182,16 +205,23 @@ function DishPage() {
 
         <ul className="mt-6 space-y-3">
           {dish.reviews.map((review) => (
-            <li key={review.name} className="clay-sm rounded-3xl bg-background p-4">
+            <li
+              key={review.name}
+              className="clay-sm rounded-3xl bg-background p-4"
+            >
               <div className="flex flex-wrap items-center gap-3">
                 <span className="clay-sm grid size-9 place-items-center rounded-full bg-butter font-extrabold text-butter-foreground">
                   {review.name.charAt(0)}
                 </span>
                 <span className="font-bold">{review.name}</span>
                 <Stars rating={review.rating} />
-                <span className="ml-auto text-xs text-muted-foreground">{review.date}</span>
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {review.date}
+                </span>
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">{review.text[lang]}</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {review.text[lang]}
+              </p>
             </li>
           ))}
         </ul>

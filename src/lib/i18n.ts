@@ -12,7 +12,8 @@ const en: Dict = {
   hotelKind: "Hotel & Restaurant",
   tagline: "Pure vegetarian kitchen · 7:00 am – 11:30 pm",
   heroTitle: "Our Menu",
-  heroSubtitle: "Browse, filter and build your bill before you call the steward.",
+  heroSubtitle:
+    "Browse, filter and build your bill before you call the steward.",
   searchPlaceholder: "Search dishes, e.g. paneer, roti, dosa…",
   all: "All",
   veg: "Veg",
@@ -103,4 +104,5 @@ const hi: Dict = {
 
 const dicts: Record<Lang, Dict> = { en, hi };
 
-export const translate = (lang: Lang, key: string) => dicts[lang][key] ?? dicts.en[key] ?? key;
+export const translate = (lang: Lang, key: string) =>
+  dicts[lang][key] ?? dicts.en[key] ?? key;
