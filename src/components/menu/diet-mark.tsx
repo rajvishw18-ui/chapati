@@ -7,7 +7,6 @@ const styles: Record<Diet, string> = {
   jain: "border-jain text-jain",
 };
 
-
 /** Standard Indian FSSAI-style square marker + label. */
 export function DietMark({
   diet,

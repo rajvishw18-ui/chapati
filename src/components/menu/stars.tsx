@@ -11,7 +11,10 @@ export function Stars({
   className?: string;
 }) {
   return (
-    <span className={cn("inline-flex items-center gap-0.5", className)} aria-hidden="true">
+    <span
+      className={cn("inline-flex items-center gap-0.5", className)}
+      aria-hidden="true"
+    >
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}

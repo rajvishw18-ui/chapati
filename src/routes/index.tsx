@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Phone, Search, X } from "lucide-react";
-import { categories, dishes, hotel, type CategoryId, type Diet } from "@/data/menu";
+import {
+  categories,
+  dishes,
+  hotel,
+  type CategoryId,
+  type Diet,
+} from "@/data/menu";
 import { useApp } from "@/context/app-context";
 import { DishCard } from "@/components/menu/dish-card";
 import { LanguageSwitcher } from "@/components/menu/language-switcher";
@@ -17,7 +23,10 @@ export const Route = createFileRoute("/")({
         content:
           "Pure veg menu at Chapati.com Hotel & Restaurant — Indian, Chinese, South Indian, thali, rice and sweets with photos, Hindi/English, ratings and a live bill estimate.",
       },
-      { property: "og:title", content: "Chapati.com — Hotel & Restaurant Digital Menu" },
+      {
+        property: "og:title",
+        content: "Chapati.com — Hotel & Restaurant Digital Menu",
+      },
       {
         property: "og:description",
         content:
@@ -57,13 +66,13 @@ function MenuPage() {
       const names = [dish.name.en.toLowerCase(), dish.name.hi.toLowerCase()];
       if (names.some((n) => n === q)) return 0;
       if (names.some((n) => n.startsWith(q))) return 1;
-      if (names.some((n) => n.split(/\s+/).some((w) => w.startsWith(q)))) return 2;
+      if (names.some((n) => n.split(/\s+/).some((w) => w.startsWith(q))))
+        return 2;
       if (names.some((n) => n.includes(q))) return 3;
       return 4;
     };
     return [...matches].sort((a, b) => score(a) - score(b));
   }, [query, diet, category]);
-
 
   const visibleCategories = categories.filter((c) =>
     filtered.some((d) => d.category === c.id),
@@ -95,13 +104,21 @@ function MenuPage() {
       </header>
 
       <section className="mt-6">
-        <h2 className="text-2xl font-extrabold sm:text-3xl">{t("heroTitle")}</h2>
-        <p className="mt-1 max-w-xl text-muted-foreground">{t("heroSubtitle")}</p>
+        <h2 className="text-2xl font-extrabold sm:text-3xl">
+          {t("heroTitle")}
+        </h2>
+        <p className="mt-1 max-w-xl text-muted-foreground">
+          {t("heroSubtitle")}
+        </p>
       </section>
 
       <div className="sticky top-3 z-30 mt-5 space-y-3 rounded-4xl bg-background/80 py-3 backdrop-blur-md">
         <div className="clay-inset flex items-center gap-3 rounded-full bg-card px-5 py-3">
-          <Search width={18} height={18} className="shrink-0 text-muted-foreground" />
+          <Search
+            width={18}
+            height={18}
+            className="shrink-0 text-muted-foreground"
+          />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -133,7 +150,10 @@ function MenuPage() {
 
           <span className="mx-1 hidden h-6 w-px shrink-0 bg-border sm:block" />
 
-          <FilterPill active={category === "all"} onClick={() => setCategory("all")}>
+          <FilterPill
+            active={category === "all"}
+            onClick={() => setCategory("all")}
+          >
             {t("all")}
           </FilterPill>
           {categories.map((c) => (
@@ -151,7 +171,9 @@ function MenuPage() {
       {filtered.length === 0 ? (
         <div className="clay mt-8 rounded-4xl bg-card px-6 py-14 text-center">
           <p className="text-lg font-bold">{t("noResults")}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{t("noResultsHint")}</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {t("noResultsHint")}
+          </p>
           <button
             type="button"
             onClick={resetFilters}
@@ -192,12 +214,16 @@ function MenuPage() {
       )}
 
       <footer className="clay gold-frame mt-12 rounded-4xl bg-card px-6 py-8 text-center">
-        <h2 className="font-script text-4xl text-primary sm:text-5xl">{hotel.name}</h2>
+        <h2 className="font-script text-4xl text-primary sm:text-5xl">
+          {hotel.name}
+        </h2>
         <p className="mt-1 text-sm tracking-[0.2em] text-muted-foreground uppercase">
           {t("hotelKind")}
         </p>
 
-        <h3 className="mt-6 text-lg font-extrabold text-primary">{t("facilities")}</h3>
+        <h3 className="mt-6 text-lg font-extrabold text-primary">
+          {t("facilities")}
+        </h3>
         <ul className="mt-2 flex flex-wrap justify-center gap-2">
           {hotel.facilities[lang].map((f) => (
             <li
@@ -209,7 +235,9 @@ function MenuPage() {
           ))}
         </ul>
 
-        <h3 className="mt-6 text-sm font-bold text-muted-foreground">{t("forBooking")}</h3>
+        <h3 className="mt-6 text-sm font-bold text-muted-foreground">
+          {t("forBooking")}
+        </h3>
         <div className="mt-2 flex flex-wrap justify-center gap-2">
           {hotel.phones.map((p) => (
             <a
@@ -243,7 +271,9 @@ function FilterPill({
       aria-pressed={active}
       className={cn(
         "clay-press inline-flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-bold whitespace-nowrap transition-colors",
-        active ? "clay-sm bg-primary text-primary-foreground" : "clay-sm bg-card",
+        active
+          ? "clay-sm bg-primary text-primary-foreground"
+          : "clay-sm bg-card",
       )}
     >
       {children}

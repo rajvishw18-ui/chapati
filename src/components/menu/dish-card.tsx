@@ -38,8 +38,14 @@ export function DishCard({ dish }: { dish: Dish }) {
 
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex items-start justify-between gap-3">
-          <Link to="/dish/$dishId" params={{ dishId: dish.id }} className="min-w-0">
-            <h3 className="truncate text-base leading-tight font-bold">{dish.name[lang]}</h3>
+          <Link
+            to="/dish/$dishId"
+            params={{ dishId: dish.id }}
+            className="min-w-0"
+          >
+            <h3 className="truncate text-base leading-tight font-bold">
+              {dish.name[lang]}
+            </h3>
           </Link>
           <span className="shrink-0 text-sm font-extrabold text-primary">
             {dish.halfPrice
@@ -48,16 +54,28 @@ export function DishCard({ dish }: { dish: Dish }) {
           </span>
         </div>
 
-        <p className="line-clamp-2 text-sm text-muted-foreground">{dish.description[lang]}</p>
+        <p className="line-clamp-2 text-sm text-muted-foreground">
+          {dish.description[lang]}
+        </p>
 
         <div className="flex items-center gap-1.5">
           <Stars rating={dish.rating} />
-          <span className="text-xs font-semibold">{dish.rating.toFixed(1)}</span>
+          <span className="text-xs font-semibold">
+            {dish.rating.toFixed(1)}
+          </span>
           <span className="text-xs text-muted-foreground">({reviewCount})</span>
           {dish.spice > 0 && (
-            <span className="ml-1 inline-flex items-center text-destructive" aria-hidden="true">
+            <span
+              className="ml-1 inline-flex items-center text-destructive"
+              aria-hidden="true"
+            >
               {Array.from({ length: dish.spice }).map((_, i) => (
-                <Flame key={i} width={12} height={12} className="fill-destructive/25" />
+                <Flame
+                  key={i}
+                  width={12}
+                  height={12}
+                  className="fill-destructive/25"
+                />
               ))}
             </span>
           )}
